@@ -1,0 +1,251 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --clr-primary: #f70058;
+  --clr-dark: #0c0e36;
+  --clr-light: #fff;
+  --fw-normal: 400;
+  --fw-bold: 700;
+  --fw-black: 900;
+  --grid: minmax(1em, 10%) minmax(10em, 22ch) minmax(10em, 23ch)
+    minmax(1em, 3fr) max-content;
+}
+
+body {
+  margin: 0;
+  font-family: "Work Sans", sans-serif;
+  font-size: 1.125rem;
+  color: var(--clr-dark);
+  line-height: 1.6;
+  background-color: grey;
+  min-width: 285px;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1;
+}
+
+p {
+  margin-top: 0;
+}
+
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.75em 1em;
+  margin-bottom: 0.75em;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: var(--fw-bold);
+}
+
+.btn--primary {
+  background-color: var(--clr-primary);
+  color: var(--clr-light);
+}
+
+.btn--primary:hover {
+  background-color: var(--clr-dark);
+}
+
+.btn--outline {
+  outline: 5px solid var(--clr-primary); /*Instead of using border, we use outline property here so that the dimensions remain the same as the primary btn.*/
+  outline-offset: -5px; /*This will bring the btn back to it's original dimensions.*/
+  color: var(--clr-primary);
+}
+
+.btn--outline:hover {
+  background-color: var(--clr-dark);
+  outline-color: var(--clr-dark);
+  color: var(--clr-light);
+}
+
+/* This won't target the first button, but all the following (next) buttons. */
+.btn + .btn {
+  margin-left: 1em;
+}
+
+.logo {
+  margin-top: 1em;
+}
+
+header {
+  background-color: var(--clr-light);
+  text-align: center;
+}
+
+.nav__list {
+  display: flex;
+  justify-content: space-around;
+  max-width: 35rem;
+  margin: 0 auto;
+  padding: 1em;
+  list-style: none;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  font-weight: var(--fw-bold);
+  letter-spacing: 1px;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav__list-item:hover {
+  color: var(--clr-primary);
+}
+
+.weather {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  background-color: var(--clr-dark);
+  color: var(--clr-light);
+  width: max-content;
+  margin: 0.5em auto -1em;
+  position: relative;
+  z-index: 2;
+}
+
+.weather__icon {
+  grid-row: span 2;
+  padding: 0.5em;
+  background-color: var(--clr-primary);
+  display: flex;
+}
+
+.weather__info {
+  margin: 0;
+  margin-left: 1em;
+  text-align: left;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: var(--fw-bold);
+  display: flex;
+  align-items: center;
+  letter-spacing: 1px;
+}
+
+.weather__info span {
+  color: var(--clr-light);
+  margin-left: 0.75em;
+  margin-right: 0.75rem;
+  font-size: 1rem;
+  text-transform: none;
+}
+
+.weather__info:first-of-type {
+  margin-top: 0.5em;
+}
+.weather__info:last-of-type {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5em;
+  position: relative;
+}
+.weather__info:last-of-type::before {
+  content: "";
+  margin-bottom: 0.5em;
+  top: -0.25rem;
+  width: calc(100% - 0.75rem);
+  position: absolute;
+  background: var(--clr-light);
+  height: 2px;
+  opacity: 0.3;
+}
+
+.main {
+  padding: 3em 1em 10em;
+}
+
+@media (min-width: 500px) {
+  .main {
+    display: grid;
+    grid-template-columns: var(--grid);
+    justify-items: start;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .main > * {
+    grid-column: 2 / 4;
+  }
+
+  .main--ski {
+    background-position: left center !important;
+  }
+}
+
+@media (min-width: 285) {
+}
+
+@media (min-width: 970px) {
+  .main {
+    display: grid;
+    grid-template-columns: var(--grid);
+    justify-items: start;
+    background-position: center right !important;
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: var(--grid);
+    align-items: center;
+  }
+
+  .logo,
+  nav,
+  .weather {
+    grid-row: 1;
+    margin: 0;
+  }
+
+  .logo {
+    grid-column: 2;
+  }
+
+  nav {
+    grid-column: 2 / 5;
+    justify-self: end;
+    margin-right: 3em;
+  }
+
+  .nav__list-item {
+    margin-left: 3em;
+  }
+
+  .weather {
+    grid-column: -2 / -1;
+    justify-self: end;
+  }
+}
+
+@media (min-width: 1200px) {
+  .main {
+    background-position: center right !important;
+  }
+}
+
+.main--ski {
+  background: url(../images/skier.jpg);
+  background-size: cover;
+}
+
+.main__title {
+  line-height: 1;
+  font-weight: var(--fw-black);
+  font-size: 3rem;
+}
+
+.main__intro {
+  margin-bottom: 4em;
+}
